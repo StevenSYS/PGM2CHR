@@ -9,44 +9,67 @@ static char outputFilename[LENGTH_FILENAME];
 
 static chr_t chr;
 
-int main(int argc, char *argv[]) {
-	printf(PROGRAM_NAME " v" PROGRAM_VERSION "\n");
-	
+#ifdef MISSING_L_FUNCS
+	#define strlcpy(_src, _dst, _len) \
+		strncpy(_src, _dst, _len - 1); \
+		_src[sizeof(_src) - 1] = 0;
+	#define strlcat(_src, _dst, _len) \
+		strncat(_src, _dst, _len - 1); \
+		_src[sizeof(_src) - 1] = 0;
+#endif
+
+char loadArgs(
+	int argc,
+	char *argv[]
+) {
 	if (argc > 1) {
 		if (argc > 2) {
-			strncpy(
+			strlcpy(
 				outputFilename,
 				argv[2],
 				LENGTH_FILENAME
 			);
 		} else {
-			strncpy(
+			strlcpy(
 				outputFilename,
 				DEFAULT_OUTPUTFILE,
 				LENGTH_FILENAME
 			);
 		}
 		
-		strncpy(
+		strlcpy(
 			inputFilename,
 			argv[1],
 			LENGTH_FILENAME
 		);
-		
-		printf("- Input: \"%s\"\n", inputFilename);
-		printf("- Output: \"%s\"\n", outputFilename);
 	} else {
-		if (argc > 0) {
-			printf("Usage: %s <input PGM filename> [output CHR filename]\n", argv[0]);
-		}
+		printf("Usage: %s <input PGM filename> [output CHR filename]\n", argv[0]);
 		printf("- Missing input image\n");
 		return 1;
 	}
+	return 0;
+}
+
+int main(
+	int argc,
+	char *argv[]
+) {
+	printf(PROGRAM_NAME " v" PROGRAM_VERSION "\n");
+	
+	printf("- Loading arguments\n");
+	
+	if (loadArgs(argc, argv)) {
+		return 1;
+	}
+	
+	printf("- Loaded arguments\n");
+	
+	printf("- Input: \"%s\"\n", inputFilename);
+	printf("- Output: \"%s\"\n", outputFilename);
 	
 	printf("- Converting PGM file to CHR tile set\n");
 	
 	if (chr_pgmToCHR(&chr, inputFilename)) {
-		printf("ERROR: Conversion failed\n");
 		return 1;
 	}
 	
@@ -55,7 +78,6 @@ int main(int argc, char *argv[]) {
 	printf("- Creating CHR file\n");
 	
 	if (chr_toFile(chr, outputFilename)) {
-		printf("ERROR: Failed to create CHR file\n");
 		return 1;
 	}
 	
