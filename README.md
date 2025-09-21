@@ -1,4 +1,4 @@
-# PGM2CHR
+# [PGM2CHR](https://github.com/StevenSYS/PGM2CHR)
 A simple command line tool that converts a 128x256 [PGM image file](https://en.wikipedia.org/wiki/Netpbm) to a [Famicom/NES CHR tileset](https://www.nesdev.org/wiki/PPU_pattern_tables) file
 
 # Usage

@@ -43,7 +43,7 @@ int chr_pgmToCHR(
 		fprintf(stderr, "ERROR: ASCII PGM Files aren't yet supported\n");
 		return 1;
 	} else if (!(STARTSWITH((char *)buffer, P5_SIGNATURE))) {
-		fprintf(stderr, "ERROR: File signature isn't \"" PGM_SIGNATURE "\"\n");
+		fprintf(stderr, "ERROR: File signature isn't \"" P5_SIGNATURE "\"\n");
 		return 1;
 	}
 	
