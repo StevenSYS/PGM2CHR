@@ -8,7 +8,8 @@
 #define POSITION(_x, _y, _width) (_y * _width) + _x
 #define STARTSWITH(_a, _b) strncmp(_a, _b, strlen(_b)) == 0
 
-#define PGM_SIGNATURE "P5"
+#define P2_SIGNATURE "P2"
+#define P5_SIGNATURE "P5"
 
 int chr_pgmToCHR(
 	chr_t *chr,
@@ -38,7 +39,10 @@ int chr_pgmToCHR(
 		return 1;
 	}
 	
-	if (!(STARTSWITH((char *)buffer, PGM_SIGNATURE))) {
+	if (STARTSWITH((char *)buffer, P2_SIGNATURE)) {
+		fprintf(stderr, "ERROR: ASCII PGM Files aren't yet supported\n");
+		return 1;
+	} else if (!(STARTSWITH((char *)buffer, P5_SIGNATURE))) {
 		fprintf(stderr, "ERROR: File signature isn't \"" PGM_SIGNATURE "\"\n");
 		return 1;
 	}
@@ -98,7 +102,10 @@ int chr_pgmToCHR(
 	}
 	
 	for (i = 0; i < CHR_TILES; i++) {
-		if (!(i % (size[0] / 8)) && i > 0) {
+		if (
+			!(i % (size[0] / 8)) &&
+			i > 0
+		) {
 			j += 7;
 		}
 		
