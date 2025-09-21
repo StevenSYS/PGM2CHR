@@ -43,8 +43,8 @@ char loadArgs(
 			LENGTH_FILENAME
 		);
 	} else {
-		printf("Usage: %s <input PGM filename> [output CHR filename]\n", argv[0]);
 		printf("- Missing input image\n");
+		printf("Usage: %s <input PGM filename> [output CHR filename]\n", argv[0]);
 		return 1;
 	}
 	return 0;
