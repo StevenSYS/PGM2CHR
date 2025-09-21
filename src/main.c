@@ -55,6 +55,7 @@ int main(
 	char *argv[]
 ) {
 	printf(PROGRAM_NAME " v" PROGRAM_VERSION "\n");
+	printf("Created by StevenSYS\n");
 	
 	printf("- Loading arguments\n");
 	
