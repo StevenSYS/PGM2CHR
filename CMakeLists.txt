@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.11)
 
 project(PGM2CHR LANGUAGES C VERSION 1.0)
 
-option(BUILD_FOR_DOS "Build ${PROGRAM_NAME} for DOS using DJGPP" OFF)
+option(BUILD_FOR_DOS "Build ${PROJECT_NAME} for DOS using DJGPP" OFF)
 option(BUILD_SHARED_LIBS "Build shared version libraries" ON)
 option(BUILD_FOR_I586 "Build ${PROJECT_NAME} for i586 (Intel Pentium) or higher" OFF)
 # Windows Compiler Options
