@@ -42,25 +42,27 @@ jobs:
       
       - name: Configure CMake
         run: >
-          cmake -S . -B build
+          cmake -S .
           -DCMAKE_C_COMPILER=gcc
           -DCMAKE_BUILD_TYPE=Release
           -DCMAKE_C_FLAGS=${{matrix.build-targets.cFlags}}
           -G "Unix Makefiles"
       
       - name: Build
-        run: cmake --build build
+        run: cmake --build .
       
       - name: Test
         run: |
-          build/${{matrix.build-targets.filename}} example1.pgm
-          build/${{matrix.build-targets.filename}} example2.pgm
+          ./${{matrix.build-targets.filename}} example1.pgm
+          ./${{matrix.build-targets.filename}} example2.pgm
       
       - name: Strip (macOS)
         if: contains(matrix.build-targets.os, 'macos')
-        run: strip build/${{matrix.build-targets.filename}}
+        run: strip ${{matrix.build-targets.filename}}
       
       - uses: actions/upload-artifact@v4
         with:
           name: ${{matrix.build-targets.uploadName}}
-          path: build/${{matrix.build-targets.filename}}
+          path: |
+            ${{matrix.build-targets.filename}}
+            LICENSE
