@@ -11,28 +11,28 @@ jobs:
             name: "Linux (x64)",
             os: "ubuntu-latest",
             cFlags: "",
-            uploadName: "PGM2CHR-Linux64",
+            uploadName: "PGM2CHR-Linux_x64",
             filename: "PGM2CHR"
           }
           - {
             name: "Windows (x64)",
             os: "windows-latest",
             cFlags: "",
-            uploadName: "PGM2CHR-Win64",
+            uploadName: "PGM2CHR-Win_x64",
             filename: "PGM2CHR.exe"
           }
           - {
             name: "macOS (x64)",
             os: "macos-15-intel",
             cFlags: "",
-            uploadName: "PGM2CHR-Mac64",
+            uploadName: "PGM2CHR-Mac_x64",
             filename: "PGM2CHR"
           }
           - {
             name: "macOS (arm64e)",
             os: "macos-latest",
             cFlags: "",
-            uploadName: "PGM2CHR-MacARM",
+            uploadName: "PGM2CHR-Mac_arm64e",
             filename: "PGM2CHR"
           }
     steps:
