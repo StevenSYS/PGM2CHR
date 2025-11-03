@@ -37,9 +37,6 @@ static chr_t chr;
 	#define strlcpy(_src, _dst, _len) \
 		strncpy(_src, _dst, _len - 1); \
 		_src[sizeof(_src) - 1] = 0;
-	#define strlcat(_src, _dst, _len) \
-		strncat(_src, _dst, _len - 1); \
-		_src[sizeof(_src) - 1] = 0;
 #endif
 
 char loadArgs(
@@ -79,7 +76,7 @@ int main(
 	char *argv[]
 ) {
 	printf(PROGRAM_NAME " v" PROGRAM_VERSION "\n");
-	printf("Created by StevenSYS\n");
+	printf("Created by StevenSYS - 2025\n");
 	
 	printf("- Loading arguments\n");
 	
